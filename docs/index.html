@@ -7,6 +7,20 @@ input[type="radio"] {
   opacity: 0;
 }
 
+input[type="radio"]:checked + label {
+  background-color: #ff0066;
+  color: #ffffff;
+}
+
+input[type="button"] {
+  opacity: 0;
+}
+
+input[type="button"]:active + label {
+  background-color: #ff0066;
+  color: #ffffff;
+}
+
 label {
   display: block;
   margin: 10px;
@@ -17,12 +31,7 @@ label {
   float: left;
 }
 
-input[type="radio"]:checked + label {
-  background-color: #ff0066;
-  color: #ffffff;
-}
-
-.radios:after {
+.buttons:after {
   content: "";
   display: block;
   clear: left;
@@ -30,7 +39,8 @@ input[type="radio"]:checked + label {
 </style>
 </head>
 <body>
-<div class="radios">
+<div id="editor">
+<div class="buttons">
   <input type="radio" name="notes" id="noteA" checked="checked"><label for="noteA">A</label>
   <input type="radio" name="notes" id="noteB"><label for="noteB">B</label>
   <input type="radio" name="notes" id="noteC"><label for="noteC">C</label>
@@ -39,19 +49,30 @@ input[type="radio"]:checked + label {
   <input type="radio" name="notes" id="noteF"><label for="noteF">F</label>
   <input type="radio" name="notes" id="noteG"><label for="noteG">G</label>
 </div>
-<div class="radios">
+<div class="buttons">
   <input type="radio" name="halfs" id="flat"><label for="flat">&#x266D;</label>
   <input type="radio" name="halfs" id="nohalf" checked="checked"><label for="nohalf">&#x266E</label>
   <input type="radio" name="halfs" id="sharp"><label for="sharp">&#x266F;</label>
 </div>
-<div class="radios">
+<div class="buttons">
   <input type="radio" name="keys" id="major" checked="checked"><label for="major">Major</label>
   <input type="radio" name="keys" id="minor"><label for="minor">Minor</label>
 </div>
-<div class="radios">
+<div class="buttons">
   <input type="radio" name="seventh" id="no7" checked="checked"><label for="no7">None</label>
   <input type="radio" name="seventh" id="major7"><label for="major7">M7</label>
   <input type="radio" name="seventh" id="minor7"><label for="minor7">m7</label>
+</div>
+<div class="buttons">
+  <input type="button" id="add"><label for="add">Add</label>
+  <input type="button" id="delete"><label for="delete">Delete</label>
+</div>
+</div>
+<div id="player">
+<div class="buttons">
+  <input type="button" id="edit"><label for="edit">Edit</label>
+</div>
+<canvas id="player"></canvas>
 </div>
 </body>
 </html>
