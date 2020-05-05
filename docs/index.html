@@ -29,18 +29,24 @@ label {
   display: block;
   clear: left;
 }
+/*
+canvas {
+	border: 1px solid #000000;
+}
+*/
 </style>
+<script type="module" src="./scripts/main.js"></script>
 </head>
 <body>
 <div id="editor">
 <div class="buttons">
-  <input type="radio" name="notes" id="noteA" checked="checked"><label for="noteA">A</label>
-  <input type="radio" name="notes" id="noteB"><label for="noteB">B</label>
-  <input type="radio" name="notes" id="noteC"><label for="noteC">C</label>
+  <input type="radio" name="notes" id="noteC" checked="checked"><label for="noteC">C</label>
   <input type="radio" name="notes" id="noteD"><label for="noteD">D</label>
   <input type="radio" name="notes" id="noteE"><label for="noteE">E</label>
   <input type="radio" name="notes" id="noteF"><label for="noteF">F</label>
   <input type="radio" name="notes" id="noteG"><label for="noteG">G</label>
+  <input type="radio" name="notes" id="noteA"><label for="noteA">A</label>
+  <input type="radio" name="notes" id="noteB"><label for="noteB">B</label>
 </div>
 <div class="buttons">
   <input type="radio" name="halfs" id="flat"><label for="flat">&#x266D;</label>
@@ -62,10 +68,7 @@ label {
 </div>
 </div>
 <div id="player">
-<div class="buttons">
-  <input type="button" id="edit"><label for="edit">Edit</label>
-</div>
-<canvas id="player"></canvas>
+<canvas id="canvas"></canvas>
 </div>
 </body>
 </html>
