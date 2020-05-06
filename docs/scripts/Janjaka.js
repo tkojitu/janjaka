@@ -60,7 +60,7 @@ export default class {
     }
 
     readKey() {
-        let rs = document.getElementsByName("keys");
+        let rs = document.getElementsByName("triads");
         return this.readRadio(rs);
     }
 

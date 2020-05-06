@@ -4,10 +4,10 @@ export default class {
     constructor() {
         this.chords = [];
     }
-    add(note, half, key, seventh) {
+    add(note, half, triad, seventh) {
         let div = document.getElementById("player");
         let id = "chord" + this.chords.length;
-        let chord = new Chord(id, note, half, key, seventh);
+        let chord = new Chord(id, note, half, triad, seventh);
         this.chords.push(chord);
         this.addButtonPair(div, chord);
     }

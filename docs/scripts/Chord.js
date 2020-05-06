@@ -1,21 +1,21 @@
 export default class {
-    constructor(id, note, half, key, seventh) {
+    constructor(id, note, half, triad, seventh) {
         this.id = id;
         this.note = note;
         this.half = half;
-        this.key = key;
+        this.triad = triad;
         this.seventh = seventh;
     }
 
     getHTML() {
-        return this.getTextNote() + this.getTextHalf() + this.getTextKey() + this.getTextSeventh();
+        return this.getHTMLNote() + this.getHTMLHalf() + this.getHTMLTriad() + this.getHTMLSeventh();
     }
     
-    getTextNote() {
+    getHTMLNote() {
         return this.note.charAt(this.note.length - 1);
     }
 
-    getTextHalf() {
+    getHTMLHalf() {
         switch (this.half) {
         case "flat":
             return "<sub>&#x266E</sub>";
@@ -26,20 +26,29 @@ export default class {
         }
     }
 
-    getTextKey() {
-        return (this.key == "minor") ? "m" : "";
+    getHTMLTriad() {
+        switch (this.triad) {
+        case "minor":
+            return "m";
+        case "dim":
+            return "dim";
+        default:
+            return "";
+        }
     }
 
-    getTextSeventh() {
+    getHTMLSeventh() {
         switch (this.seventh) {
-        case "dim3":
-            return "dim";
         case "7":
             return "7";
         case "major7":
             return "M7";
         case "dim7":
-            return "dim7";
+            if (this.triad == "dim") {
+                return "7";
+            } else {
+                return "dim7";
+            }
         default:
             return "";
         }
