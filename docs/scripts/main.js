@@ -14,7 +14,7 @@ window.addEventListener(
 		c.define(
 			"janjaka",
 			function(c) {
-				return new Janjaka();
+				return new Janjaka(c.geti("player"));
 			});
 		c.geti("janjaka").init();
 	});

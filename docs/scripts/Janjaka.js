@@ -1,7 +1,10 @@
 export default class {
+    constructor(player) {
+        this.player = player;
+    }
+
     init() {
         this.initListeners();
-        this.initCanvas();
     }
 
     initListeners() {
@@ -29,13 +32,6 @@ export default class {
             });
     }
 
-    initCanvas() {
-        let canvas = document.getElementById("canvas");
-        canvas.width = window.innerWidth - 30;
-        let editor = document.getElementById("editor");
-        canvas.height = window.innerHeight - editor.offsetHeight - 30;
-     }
-
      onClickAdd() {
          let note = this.readNote();
          let half = this.readHalf();
@@ -46,11 +42,11 @@ export default class {
 
      readNote() {
          let rs = document.getElementsByName("notes");
-         return this.readRadios(rs);
+         return this.readRadio(rs);
      }
 
      readRadio(radios) {
-        for (let r of rs) {
+        for (let r of radios) {
             if (r.checked) {
                 return r.id;
             }
@@ -60,17 +56,17 @@ export default class {
 
      readHalf() {
         let rs = document.getElementsByName("halfs");
-        return this.readRadios(rs);
+        return this.readRadio(rs);
     }
 
     readKey() {
         let rs = document.getElementsByName("keys");
-        return this.readRadios(rs);
+        return this.readRadio(rs);
     }
 
     readSeventh() {
         let rs = document.getElementsByName("seventh");
-        return this.readRadios(rs);
+        return this.readRadio(rs);
     }
 
      onClickDelete() {
