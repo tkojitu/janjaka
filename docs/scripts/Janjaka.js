@@ -70,5 +70,6 @@ export default class {
     }
 
      onClickDelete() {
+         this.player.delete();
      }
 }

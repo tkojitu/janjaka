@@ -30,4 +30,12 @@ export default class {
         elt.innerHTML = chord.getHTML();
         return elt;
     }
+
+    delete() {
+        let div = document.getElementById("player");
+        if (!div.lastChild) {
+            return;
+        }
+        div.removeChild(div.lastChild);
+    }
 }
