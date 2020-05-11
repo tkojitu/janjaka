@@ -88,11 +88,11 @@ export default class {
 	 }
 
 	 onClickLoad() {
-		 let opt = this.findSelectedPreset();
+		 let opt = this.findSelectedSong();
 		 this.player.load(opt);
 	 }
 
-	 findSelectedPreset() {
+	 findSelectedSong() {
 		let sel = document.getElementById("book");
 		for (let opt of sel.childNodes) {
 			if (opt.selected) {
@@ -104,16 +104,16 @@ export default class {
 
 	 setupBook() {
 		 let sel = document.getElementById("book");
-		 for (let preset of this.player.book.songs) {
-			 let opt = this.newOption(preset);
+		 for (let song of this.player.book.songs) {
+			 let opt = this.newOption(song);
 			 sel.appendChild(opt);
 		 }
 	 }
 
-	 newOption(preset) {
+	 newOption(song) {
 		let opt = document.createElement("option");
-		opt.value = preset.pid;
-		opt.innerHTML = preset.name;
+		opt.value = song.sid;
+		opt.innerHTML = song.name;
 		return opt;
 	}
 

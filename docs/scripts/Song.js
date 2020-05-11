@@ -1,6 +1,6 @@
 export default class {
-	constructor(pid, name, chords) {
-		this.pid = pid;
+	constructor(sid, name, chords) {
+		this.sid = sid;
 		this.name = name;
 		this.chords = chords;
 	}

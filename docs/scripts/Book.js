@@ -1,5 +1,5 @@
 import Chord from "./Chord.js";
-import Preset from "./Preset.js";
+import Song from "./Song.js";
 
 export default class {
 	constructor() {
@@ -12,8 +12,8 @@ export default class {
 
 	getDefault() {
 		let sets = [];
-		sets.push(new Preset("d" + 0, "C F G", this.newCFG()));
-		sets.push(new Preset("d" + 1, "D G A", this.newDGA()));
+		sets.push(new Song("d" + 0, "C F G", this.newCFG()));
+		sets.push(new Song("d" + 1, "D G A", this.newDGA()));
 		return sets;
 	}
 
@@ -133,9 +133,9 @@ export default class {
 		}
 	}
 
-	findPreset(pid) {
+	findSong(sid) {
 		for (let song of this.songs) {
-			if (song.pid == pid) {
+			if (song.sid == sid) {
 				return song;
 			}
 		}

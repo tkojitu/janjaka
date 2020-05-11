@@ -73,12 +73,12 @@ export default class {
 		this.guitar.onPointerUp(chord);
 	}
 
-	load(pid) {
+	load(sid) {
 		let div = document.getElementById("player");
 		this.clear(div);
-		let preset = this.book.findPreset(pid);
-		this.chords = preset.chords;
-		this.addButtonsPreset(div, preset);
+		let song = this.book.findSong(sid);
+		this.chords = song.chords;
+		this.addButtonsSong(div, song);
 	}
 
 	clear(div) {
@@ -87,15 +87,15 @@ export default class {
 		}
 	}
 
-	addButtonsPreset(div, preset) {
-		for (let i = 0; i < preset.chords.length; ++i) {
-			let chord = preset.chords[i];
+	addButtonsSong(div, song) {
+		for (let i = 0; i < song.chords.length; ++i) {
+			let chord = song.chords[i];
 			this.addButtonPair(div, chord);
 		}
 	}
 
 	save() {
-		let elt = document.getElementById("presetName");
+		let elt = document.getElementById("songName");
 		this.book.save(elt.value);
 	}
 }
