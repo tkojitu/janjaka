@@ -91,4 +91,8 @@ export default class {
 	isDim7() {
 		return this.book.isDim7(this);
 	}
+
+	toString() {
+		return this.note + "\n" + this.half + "\n" + this.triad + "\n" + this.seventh;
+	}
 }

@@ -13,6 +13,7 @@ export default class {
 		this.addListenerToAdd();
 		this.addListenerToDelete();
 		this.addListenerToLoad();
+		this.addListenerToSave();
 	}
 
 	addListenerToAdd() {
@@ -103,7 +104,7 @@ export default class {
 
 	 setupBook() {
 		 let sel = document.getElementById("book");
-		 for (let preset of this.player.presets) {
+		 for (let preset of this.player.book.songs) {
 			 let opt = this.newOption(preset);
 			 sel.appendChild(opt);
 		 }
@@ -115,4 +116,18 @@ export default class {
 		opt.innerHTML = preset.name;
 		return opt;
 	}
+
+	addListenerToSave() {
+		let me = this;
+		let btn = document.getElementById("save");
+		btn.addEventListener(
+			"click",
+			function(ev) {
+				me.onClickSave();
+			});
+	 }
+
+	 onClickSave() {
+		 this.player.save();
+	 }
 }

@@ -2,6 +2,14 @@ import Chord from "./Chord.js";
 import Preset from "./Preset.js";
 
 export default class {
+	constructor() {
+		this.songs = [];
+	}
+
+	init() {
+		this.songs = this.getDefault();
+	}
+
 	getDefault() {
 		let sets = [];
 		sets.push(new Preset("d" + 0, "C F G", this.newCFG()));
@@ -117,5 +125,20 @@ export default class {
 
 	isDim7(chord) {
 		return chord.seventh == "dim7";
+	}
+
+	save(name) {
+		if (!name) {
+			return;
+		}
+	}
+
+	findPreset(pid) {
+		for (let song of this.songs) {
+			if (song.pid == pid) {
+				return song;
+			}
+		}
+		return null;
 	}
 }

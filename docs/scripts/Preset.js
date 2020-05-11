@@ -4,4 +4,16 @@ export default class {
 		this.name = name;
 		this.chords = chords;
 	}
+
+	toString() {
+		return name + "\n" + this.toStringChords();
+	}
+
+	toStringChords() {
+		let ret = "";
+		for (let chord of this.chords) {
+			ret += chord.toString();
+		}
+		return ret;
+	}
 }

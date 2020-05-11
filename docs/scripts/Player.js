@@ -5,15 +5,10 @@ export default class {
 		this.book = book;
 		this.guitar = guitar;
 		this.chords = [];
-		this.presets = [];
 	}
 
 	init() {
-		this.presets = this.loadPresetsDefault();
-	}
-
-	loadPresetsDefault() {
-		return this.book.getDefault();
+		this.book.init();
 	}
 
 	add(note, half, triad, seventh) {
@@ -81,7 +76,7 @@ export default class {
 	load(pid) {
 		let div = document.getElementById("player");
 		this.clear(div);
-		let preset = this.findPreset(pid);
+		let preset = this.book.findPreset(pid);
 		this.chords = preset.chords;
 		this.addButtonsPreset(div, preset);
 	}
@@ -92,19 +87,15 @@ export default class {
 		}
 	}
 
-	findPreset(pid) {
-		for (let preset of this.presets) {
-			if (preset.pid == pid) {
-				return preset;
-			}
-		}
-		return null;
-	}
-
 	addButtonsPreset(div, preset) {
 		for (let i = 0; i < preset.chords.length; ++i) {
 			let chord = preset.chords[i];
 			this.addButtonPair(div, chord);
 		}
+	}
+
+	save() {
+		let elt = document.getElementById("presetName");
+		this.book.save(elt.value);
 	}
 }
