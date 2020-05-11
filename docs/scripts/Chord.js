@@ -1,5 +1,6 @@
 export default class {
-	constructor(id, note, half, triad, seventh) {
+	constructor(book, id, note, half, triad, seventh) {
+		this.book = book;
 		this.id = id;
 		this.note = note;
 		this.half = half;
@@ -56,38 +57,38 @@ export default class {
 	}
 
 	isFlat() {
-		return this.half == "flat";
+		return this.book.isFlat(this);
 	}
 
 	isSharp() {
-		return this.half == "sharp";
+		return this.book.isSharp(this);
 	}
 
 	isNatural() {
-		return !this.isFlat() && !this.isSharp();
+		return this.book.isNatural(this);
 	}
 
 	isMinor() {
-		return this.triad == "minor";
+		return this.book.isMinor(this);
 	}
 
 	isDim() {
-		return this.triad == "dim";
+		return this.book.isDim(this);
 	}
 
 	isMajor() {
-		return !this.isMinor() && !this.isDim();
+		return this.book.isMajor(this);
 	}
 
 	is7() {
-		return this.seventh == "7";
+		return this.book.is7(this);
 	}
 
 	isMajor7() {
-		return this.seventh == "major7";
+		return this.book.isMajor7(this);
 	}
 
 	isDim7() {
-		return this.seventh == "dim7";
+		return this.book.isDim7(this);
 	}
 }

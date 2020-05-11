@@ -4,12 +4,15 @@ export default class {
 	}
 
 	init() {
+		this.player.init();
+		this.setupBook();
 		this.initListeners();
 	}
 
 	initListeners() {
 		this.addListenerToAdd();
 		this.addListenerToDelete();
+		this.addListenerToLoad();
 	}
 
 	addListenerToAdd() {
@@ -72,4 +75,44 @@ export default class {
 	 onClickDelete() {
 		 this.player.delete();
 	 }
+
+	 addListenerToLoad() {
+		let me = this;
+		let btn = document.getElementById("load");
+		btn.addEventListener(
+			"click",
+			function(ev) {
+				me.onClickLoad();
+			});
+	 }
+
+	 onClickLoad() {
+		 let opt = this.findSelectedPreset();
+		 this.player.load(opt);
+	 }
+
+	 findSelectedPreset() {
+		let sel = document.getElementById("book");
+		for (let opt of sel.childNodes) {
+			if (opt.selected) {
+				return opt.value;
+			}
+		}
+		return null;
+	 }
+
+	 setupBook() {
+		 let sel = document.getElementById("book");
+		 for (let preset of this.player.presets) {
+			 let opt = this.newOption(preset);
+			 sel.appendChild(opt);
+		 }
+	 }
+
+	 newOption(preset) {
+		let opt = document.createElement("option");
+		opt.value = preset.pid;
+		opt.innerHTML = preset.name;
+		return opt;
+	}
 }
