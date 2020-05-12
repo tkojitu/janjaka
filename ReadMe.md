@@ -1,6 +1,6 @@
 Janjaka
 =======
 
-The chord instrument.
+A chord instrument.
 
 [Demo](https://tkojitu.github.io/Janjaka/)
