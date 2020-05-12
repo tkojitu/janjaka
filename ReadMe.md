@@ -3,4 +3,4 @@ Janjaka
 
 A chord instrument.
 
-[Demo](https://tkojitu.github.io/Janjaka/)
+[Demo](https://tkojitu.github.io/janjaka/)
