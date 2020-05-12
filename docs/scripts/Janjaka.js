@@ -12,7 +12,7 @@ export default class {
 	initListeners() {
 		this.addListenerToAdd();
 		this.addListenerToDelete();
-		this.addListenerToLoad();
+		this.addListenerToSelect();
 		this.addListenerToSave();
 	}
 
@@ -77,19 +77,19 @@ export default class {
 		 this.player.delete();
 	 }
 
-	 addListenerToLoad() {
+	 addListenerToSelect() {
 		let me = this;
-		let btn = document.getElementById("load");
+		let btn = document.getElementById("select");
 		btn.addEventListener(
 			"click",
 			function(ev) {
-				me.onClickLoad();
+				me.onClickSelect();
 			});
 	 }
 
-	 onClickLoad() {
-		 let opt = this.findSelectedSong();
-		 this.player.load(opt);
+	 onClickSelect() {
+		 let name = this.findSelectedSong();
+		 this.player.select(name);
 	 }
 
 	 findSelectedSong() {

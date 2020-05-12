@@ -70,10 +70,10 @@ export default class {
 		this.guitar.onPointerUp(chord);
 	}
 
-	load(sid) {
+	select(name) {
 		let div = document.getElementById("player");
 		this.clear(div);
-		let song = this.book.load(sid);
+		let song = this.book.select(name);
 		this.addButtonsSong(div, song);
 	}
 

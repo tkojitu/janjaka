@@ -195,8 +195,8 @@ export default class {
 		}
 	}
 
-	load(sid) {
-		let song = this.findSong(sid);
+	select(name) {
+		let song = this.findSong(name);
 		if (!song) {
 			return;
 		}
