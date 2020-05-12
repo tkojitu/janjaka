@@ -44,6 +44,7 @@ export default class {
 		let sets = [];
 		sets.push(new Song("d" + 0, "C F G", this.newCFG()));
 		sets.push(new Song("d" + 1, "D G A", this.newDGA()));
+		sets.push(new Song("d" + 2, "Smoke on the Water", this.newSmoke()));
 		return sets;
 	}
 
@@ -108,6 +109,21 @@ export default class {
 		set.push(this.newSimpleChord(0, "D"));
 		set.push(this.newSimpleChord(1, "G"));
 		set.push(this.newSimpleChord(2, "A"));
+		return set;
+	}
+
+	newSmoke() {
+		let set = [];
+		set.push(this.newSimpleChord(0, "D"));
+		set.push(this.newSimpleChord(1, "F"));
+		set.push(this.newSimpleChord(2, "G"));
+		set.push(new Chord(
+			this,
+			this.getSymId(3),
+			this.getSymNote("G"),
+			this.getSymSharp(),
+			this.getSymMajor(),
+			this.getSymNote()));
 		return set;
 	}
 
