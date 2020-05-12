@@ -96,7 +96,7 @@ export default class {
 		let sel = document.getElementById("book");
 		for (let opt of sel.childNodes) {
 			if (opt.selected) {
-				return opt.value;
+				return opt.innerHTML;
 			}
 		}
 		return null;
@@ -129,5 +129,14 @@ export default class {
 
 	 onClickSave() {
 		 this.player.save();
+		 this.clearBook();
+		 this.setupBook();
 	 }
+
+	 clearBook() {
+		let elt = document.getElementById("book");
+		while (elt.childNodes.length > 0) {
+			elt.removeChild(elt.lastChild);
+		}
+	}
 }

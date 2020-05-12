@@ -4,7 +4,6 @@ export default class {
 	constructor(book, guitar) {
 		this.book = book;
 		this.guitar = guitar;
-		this.chords = [];
 	}
 
 	init() {
@@ -12,10 +11,8 @@ export default class {
 	}
 
 	add(note, half, triad, seventh) {
+		let chord = this.book.add(note, half, triad, seventh);
 		let div = document.getElementById("player");
-		let id = "chord" + this.chords.length;
-		let chord = new Chord(this.book, id, note, half, triad, seventh);
-		this.chords.push(chord);
 		this.addButtonPair(div, chord);
 	}
 
@@ -31,7 +28,7 @@ export default class {
 		return elt;
 	}
 
-	addListenerChord(chord, elt) {
+	addListenerChord(elt, chord) {
 		let me = this;
 		elt.addEventListener(
 			"pointerdown",
@@ -49,7 +46,7 @@ export default class {
 		let elt = document.createElement("label");
 		elt.setAttribute("for", chord.id);
 		elt.innerHTML = chord.getHTML();
-		this.addListenerChord(chord, elt);
+		this.addListenerChord(elt, chord);
 		return elt;
 	}
 
@@ -76,13 +73,12 @@ export default class {
 	load(sid) {
 		let div = document.getElementById("player");
 		this.clear(div);
-		let song = this.book.findSong(sid);
-		this.chords = song.chords;
+		let song = this.book.load(sid);
 		this.addButtonsSong(div, song);
 	}
 
-	clear(div) {
-		while (div.childNodes.length > 0) {
+	clear(elt) {
+		while (elt.childNodes.length > 0) {
 			this.delete();
 		}
 	}

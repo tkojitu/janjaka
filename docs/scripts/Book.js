@@ -3,14 +3,44 @@ import Song from "./Song.js";
 
 export default class {
 	constructor() {
+		this.work = new Song("", "", []);
 		this.songs = [];
 	}
 
 	init() {
-		this.songs = this.getDefault();
+		let songs = this.loadUsers();
+		this.songs = songs.concat(this.getDefaults());
 	}
 
-	getDefault() {
+	loadUsers() {
+		let str = window.localStorage.getItem("janjaka");
+		if (!str) {
+			return [];
+		}
+		let records = str.split("\n\n");
+		if (records.length == 0) {
+			return [];
+		}
+		let songs = [];
+		for (let record of records) {
+			let song = this.loadSong("u" + songs.length, record);
+			if (!song) {
+				continue;
+			}
+			songs.push(song);
+		}
+		return songs;
+	}
+
+	loadSong(sid, record) {
+		let song = new Song(sid, "", []);
+		if (!song.load(this, record)) {
+			return null;
+		}
+		return song;
+	}
+
+	getDefaults() {
 		let sets = [];
 		sets.push(new Song("d" + 0, "C F G", this.newCFG()));
 		sets.push(new Song("d" + 1, "D G A", this.newDGA()));
@@ -131,14 +161,67 @@ export default class {
 		if (!name) {
 			return;
 		}
+		if (this.work.chords.length == 0) {
+			return;
+		}
+		let chord = [].concat(this.work.chords);
+		let song = this.findSong(name);
+		if (song) {
+			song.chords = chord;
+		} else {
+			song = new Song("", name, chord);
+			this.songs.unshift(song);
+			this.resetSids();
+		}
+		let str = this.toString();
+		window.localStorage.setItem("janjaka", str);
 	}
 
-	findSong(sid) {
+	findSong(name) {
 		for (let song of this.songs) {
-			if (song.sid == sid) {
+			if (song.name == name) {
 				return song;
 			}
 		}
 		return null;
+	}
+
+	resetSids() {
+		for (let i = 0; i < this.songs.length; ++i) {
+			if (this.songs[i].sid.startsWith("d")) {
+				return;
+			}
+			this.songs[i].sid = "u" + i;
+		}
+	}
+
+	load(sid) {
+		let song = this.findSong(sid);
+		if (!song) {
+			return;
+		}
+		let chords = [].concat(song.chords);
+		this.work = new Song("", song.name, chords);
+		return this.work;
+	}
+
+	toString() {
+		let str = "";
+		for (let song of this.songs) {
+			if (song.sid.startsWith("d")) {
+				continue;
+			}
+			str += song.toString();
+			str += "\n";
+		}
+		return str;
+	}
+
+	add(note, half, triad, seventh) {
+		return this.work.add(this, note, half, triad, seventh);
+	}
+
+	remove() {
+		this.work.remove();
 	}
 }

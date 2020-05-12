@@ -93,6 +93,6 @@ export default class {
 	}
 
 	toString() {
-		return this.note + "\n" + this.half + "\n" + this.triad + "\n" + this.seventh;
+		return this.note + "\n" + this.half + "\n" + this.triad + "\n" + this.seventh + "\n";
 	}
 }
